@@ -57,7 +57,7 @@ jobs:
         app-name: 'highfivedevops-dev'
         images: ${{env.registryName}}/${{env.repositoryName}}:${{env.tag}}
         
-  deploy-to-test-using-docker:
+  deploy-to-test-using-docker:    
     environment: test
     runs-on: ubuntu-latest
     needs: deploy-to-dev-using-docker
@@ -72,6 +72,7 @@ jobs:
         images: ${{env.registryName}}/${{env.repositoryName}}:${{env.tag}}
     
   deploy-to-prod-using-docker:
+    if: github.event_name != 'pull_request'
     environment: production
     runs-on: ubuntu-latest
     needs: deploy-to-test-using-docker
