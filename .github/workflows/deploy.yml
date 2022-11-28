@@ -5,6 +5,7 @@ jobs:
   deploy:
     runs-on: windows-latest
     steps:
+    - uses: actions/checkout@v2.5.0
     - uses: azure/login@v1
       with:
         creds: ${{ secrets.client_secret }}
