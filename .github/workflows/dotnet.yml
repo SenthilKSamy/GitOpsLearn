@@ -2,7 +2,11 @@
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
 
 name: .NET
-
+env: 
+  registryName: highfivedevopsreg.azurecr.io
+  repositoryName:  wth/dotnetcoreapp
+  dockerFolderPath: Application/src/RazorPagesTestSample
+  tag:  ${{github.run_number}}
 on:
   workflow_dispatch:
   push:
