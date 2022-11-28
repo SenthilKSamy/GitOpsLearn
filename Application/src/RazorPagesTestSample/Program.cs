@@ -16,6 +16,7 @@ namespace RazorPagesTestSample
 
             using (var scope = host.Services.CreateScope())
             {
+                //trigger a commit
                 var services = scope.ServiceProvider;
                 var db = services.GetRequiredService<AppDbContext>();
 
