@@ -3,11 +3,11 @@ on:
 
 jobs:
   deploy:
-    runs-on:windows-latest
+    runs-on: windows-latest
     steps:
-      - name: Deploy Azure Resource Manager (ARM) Template
-        uses: Azure/arm-deploy@v1.0.9
-        with:
+    - name: Deploy Azure Resource Manager (ARM) Template
+      uses: Azure/arm-deploy@v1.0.9
+      with:
           # Provide the scope of the deployment. Valid values are: 'resourcegroup', 'managementgroup', 'subscription'
           scope: 
           # Override the Subscription Id set by Azure Login.
@@ -30,3 +30,5 @@ jobs:
           failOnStdErr: # optional, default is true
           # Specify any additional arguments for the deployment.
           additionalArguments: # optional
+
+    
