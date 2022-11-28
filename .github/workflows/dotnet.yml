@@ -17,7 +17,7 @@ jobs:
   build:
     defaults:
       run:
-        working-directory: Application\src\RazorPagesTestSample
+        working-directory: Application/src/RazorPagesTestSample
     runs-on: ubuntu-latest
 
     steps:
