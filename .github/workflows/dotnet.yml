@@ -36,3 +36,11 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
+  build-docker:
+    defaults:
+      run:
+        working-directory: Application/src/RazorPagesTestSample
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - run: docker login ${{secrets.ACR_LOGIN_SERVER}} -u ${{secrets.ACR_USERNAME}} -p ${{secrets.ACR_PASSWORD}}
