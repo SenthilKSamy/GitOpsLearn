@@ -5,6 +5,9 @@ jobs:
   deploy:
     runs-on: windows-latest
     steps:
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.client_secret }}
     - name: Deploy Azure Resource Manager (ARM) Template
       env: 
         target-env: dev
