@@ -43,4 +43,5 @@ jobs:
     - run: docker login ${{secrets.ACR_LOGIN_SERVER}} -u ${{secrets.ACR_USERNAME}} -p ${{secrets.ACR_PASSWORD}}
     - run: docker build -t ${{env.registryName}}/${{env.repositoryName}}:${{env.tag}} --build-arg build_version=${{env.tag}} ${{env.dockerFolderPath}}
     - run: docker push ${{env.registryName}}/${{env.repositoryName}}:${{env.tag}} 
-
+  deploy-to-dev-using-docker:
+    runs-on: ubuntu-latest
