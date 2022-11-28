@@ -45,3 +45,12 @@ jobs:
     - run: docker push ${{env.registryName}}/${{env.repositoryName}}:${{env.tag}} 
   deploy-to-dev-using-docker:
     runs-on: ubuntu-latest
+    steps: 
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.client_secret }}
+
+    - uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'highfivedevops-dev'
+        images: ${{env.registryName}}/${{env.repositoryName}}:${{env.tag}}
