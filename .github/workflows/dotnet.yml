@@ -44,6 +44,7 @@ jobs:
     - run: docker build -t ${{env.registryName}}/${{env.repositoryName}}:${{env.tag}} --build-arg build_version=${{env.tag}} ${{env.dockerFolderPath}}
     - run: docker push ${{env.registryName}}/${{env.repositoryName}}:${{env.tag}} 
   deploy-to-dev-using-docker:
+    environment: development
     runs-on: ubuntu-latest
     needs: build-docker
     steps: 
@@ -54,4 +55,18 @@ jobs:
     - uses: azure/webapps-deploy@v2
       with:
         app-name: 'highfivedevops-dev'
+        images: ${{env.registryName}}/${{env.repositoryName}}:${{env.tag}}
+        
+  deploy-to-test-using-docker:
+    environment: test
+    runs-on: ubuntu-latest
+    needs: deploy-to-dev-using-docker
+    steps: 
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.client_secret }}
+
+    - uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'highfivedevops-test'
         images: ${{env.registryName}}/${{env.repositoryName}}:${{env.tag}}
